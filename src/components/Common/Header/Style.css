@@ -1,0 +1,31 @@
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 3 rem;
+    background-color: #000;
+    position: sticky;
+    top:0;
+    left: 0;
+}
+.logo{
+    font-size: 1.2 rem;
+    color: var(--grey);
+    padding-left: 3.5rem;
+   
+}
+.links{
+    display: flex;
+    flex-direction: flex-end;
+    align-items: center;
+    gap: 1.5rem;
+}
+.link{
+    color: var(--grey);
+    font-weight: 500;
+
+}
+.link:hover{
+    color: var(--white);
+    transition: all .3s;
+}

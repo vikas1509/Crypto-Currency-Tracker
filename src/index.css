@@ -75,3 +75,14 @@ img {
   -o-user-drag: none;
   
   }
+
+  .grey-wapper{
+    display: block;
+    width: 90%;
+    background-color: var(--darkgrey);
+    margin: 1.5rem;
+   border-radius: 0.5rem;
+   padding: 0rem 1rem;
+  } 
+
+  

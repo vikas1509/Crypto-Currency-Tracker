@@ -3,8 +3,10 @@ import "./styles.css";
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import TrendingDownIcon from '@mui/icons-material/TrendingDown';
 import { green } from '@mui/material/colors';
+import { Link } from 'react-router-dom';
 function Grid({ coin }) {
   return (
+    <Link to={`/coin/${coin.id}`}>
     <div className={`grid-container ${coin.price_change_percentage_24h < 0 && "grid-container-red"
     }`}>
 <div className='info-flex'>
@@ -49,6 +51,7 @@ style={{
 
 
        </div>
+       </Link>
   );
 }
 

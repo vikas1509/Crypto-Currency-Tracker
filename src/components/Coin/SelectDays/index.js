@@ -6,7 +6,7 @@ import MenuItem from '@mui/material/MenuItem';
 
 import Select from '@mui/material/Select';
 
-export default function SelectDays({days,handleDaysChange}) {
+export default function SelectDays({days,handleDaysChange, noPTag}) {
 //  const [days, setDays] = useState(30);
 
 //   const handleChange = (event) => {
@@ -16,11 +16,12 @@ export default function SelectDays({days,handleDaysChange}) {
   return (
   
     <div className='select-days'> 
-    <p>price change In </p>
+    {!noPTag &&  <p>price change In </p>}
+  
           <Select sx={{
-        height:"2.5rem",
+        height: "2.5rem",
          color:"var(--white)",
-         "& .MuiOutlinedInput-notchedOutline":{
+         "& .MuiOutlinedInput-notcshedOutline":{
             borderColor:"var(--white)",
         },
         "& .MuiSvgIcon-root":{
@@ -40,7 +41,7 @@ export default function SelectDays({days,handleDaysChange}) {
           labelId="demo-simple-select-label"
           id="demo-simple-select"
           value={days} 
-          label="days"
+          label="Days"
           onChange={handleDaysChange}
         >
           <MenuItem value={7}> 7</MenuItem>

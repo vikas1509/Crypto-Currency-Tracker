@@ -59,7 +59,7 @@ function CoinPage() {
   const [coinData, setCoinData] = useState(); // Updated initialization
   const [days, setDays] = useState(120);
   const [chartData, setChartData] = useState({labels:[], datasets:[],});
-  const [PriceType, , setPriceType] = useState('prices');
+  const [PriceType, setPriceType] = useState('prices');
 
   useEffect(() => {
     if (id) {
@@ -90,7 +90,7 @@ function CoinPage() {
 
   const prices = await getCoinPrices(id, event.target.value, PriceType);
   if (prices.length > 0) {
-    console.log("wooo");
+    
 
 settingChartData(setChartData, prices);
 
@@ -98,25 +98,46 @@ settingChartData(setChartData, prices);
     setIsLoading(false);
   }
 
- }
+ };
 
  
  
-     const handlePriceTypeChange = async (event, newType) => {
-      setIsLoading(true);
-         setPriceType(newType);
+    //  const handlePriceTypeChange = async (event, newType) => {
+    //   setIsLoading(true);
+    //      setPriceType(newType);
 
-         const prices = await getCoinPrices(id, days, newType);
-         if (prices.length > 0) {
-           console.log("wooo");
+    //      const prices = await getCoinPrices(id, days, newType);
+    //      if (prices.length > 0) {
+         
        
-       settingChartData(setChartData, prices);
+    //    settingChartData(setChartData, prices);
        
            
-           setIsLoading(false);
-         }
+    //        setIsLoading(false);
+    //      }
 
-     };
+    //  };
+    const handlePriceTypeChange = async (event, newType) => {
+      setIsLoading(true);
+      setPriceType(newType);
+    
+      try {
+        const prices = await getCoinPrices(id, days, newType);
+        if (prices && prices.length > 0) {
+          settingChartData(setChartData, prices);
+          setIsLoading(false);
+        } else {
+          // Handle the case where prices are undefined or have no length
+          console.error('Prices are undefined or empty.');
+          setIsLoading(false);
+        }
+      } catch (error) {
+        console.error('Error fetching prices:', error);
+        // Handle the error appropriately, such as setting isLoading to false or showing an error message
+        setIsLoading(false);
+      }
+    };
+    
 
   return (
     <div>
@@ -126,15 +147,16 @@ settingChartData(setChartData, prices);
       ) : (
         <>
           <div className='grey-wapper' style={{padding: "0rem 1rem"}}>
-            <List coin={coinData} />
+            <List coin={coinData}  />
           </div>
           <div className='grey-wapper'>
             <SelectDays days={days} handleDaysChange={handleDaysChange}/>
+
             <TogglePriceType PriceType={PriceType} 
             handlePriceTypeChange={handlePriceTypeChange} />
 
 
-            <LineChart chartData={chartData} />
+            <LineChart chartData={chartData} PriceType={PriceType}  />
           </div>
           <CoinInfo heading={coinData.name}
             desc={coinData.desc} />

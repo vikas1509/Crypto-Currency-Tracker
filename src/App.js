@@ -3,6 +3,7 @@ import Header from './components/Common/Header'
 import MainComponent from './components/LandingPage/MainComponent'
 import HomePage from './pages/HomePage'
 import { BrowserRouter, Route ,Routes} from 'react-router-dom'
+import ComparePage from './pages/ComparePage'
 import Dashboard from './pages/Dashboard'
   import CoinPage from "./pages/CoinPage";
 function App() {
@@ -13,6 +14,7 @@ function App() {
   <Route path="/" element={<HomePage/>} />
   <Route path="/dashboard" element={<Dashboard/>}/>
   <Route path='/coin/:id' element={<CoinPage/>}/>
+  <Route path='/compare' element={<ComparePage/>}/>
  
 </Routes>
 </BrowserRouter>
